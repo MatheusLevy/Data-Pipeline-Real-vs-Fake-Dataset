@@ -13,11 +13,6 @@ class RoboflowHandler(BaseHandler):
     def __init__(self, source_name, config):
         super().__init__(source_name, config)
         self.rf = Roboflow(api_key=os.getenv("API_KEY_ROBOFLOW"))
-
-    def extract(self, filters):
-        """Extract raw data from Roboflow"""
-        self.logger.info("Extracting data from Roboflow")
-        pass
     
     def _get_workspace(self) -> str:
         """Helper method to get a Roboflow workspace"""
@@ -30,12 +25,6 @@ class RoboflowHandler(BaseHandler):
         url: str = self.config.get("url")
         project_id: str = url.split("/")[-1]
         return project_id
-    
-    def filter(self, raw_data, filters):
-        """Apply Roboflow-specific filters"""
-        self.logger.info("Filtering Roboflow data")
-        # Implementation for filtering Roboflow data
-        pass
     
     def download_images(self) -> list[Path]:
         """Download the selected images from Roboflow"""

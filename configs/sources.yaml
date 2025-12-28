@@ -9,7 +9,8 @@ sources:
     date: August 2023
     version: 1
     model: YOLOv12
-    filters: []
+    pre-filters: []
+    pos-filters: []
   - name: Game or cartoon person Computer Vision Model
     author: newobjectyolomodel
     type: Open Source Dataset
@@ -20,4 +21,16 @@ sources:
     date: July 2024
     version: 2
     model: YOLOv12
-    filters: []
+    pre-filters: []
+    pos-filters: []
+  - name: cartoon
+    author: skbadhsm
+    type: Open Source Dataset
+    source: Kaggle
+    handler: kaggle
+    url: https://www.kaggle.com/datasets/skbadhsm/cartoon
+    license: Database Contents License (DbCL) v1.0
+    date: 2019
+    pre-filters: []
+    pos-filters: 
+      - extract

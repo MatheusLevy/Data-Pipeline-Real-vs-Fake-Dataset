@@ -15,7 +15,7 @@ class ImagePipelineOrchestrator:
         sources: list[dict] = self.config.get('sources', [])
         for source_cfg in sources:
             handler: BaseHandler = HandlerFactory.get_handler(source_cfg['handler'], source_cfg)
-            images_path: list[Path] = handler.run(filters=source_cfg.get('filters', []))
+            images_path: list[Path] = handler.run()
             self.consolidate_images(images_path)
         shutil.rmtree('temp', ignore_errors=True)
         

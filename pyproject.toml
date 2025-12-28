@@ -6,6 +6,7 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "dvc[s3]>=3.65.0",
+    "kagglehub>=0.3.13",
     "python-dotenv>=1.2.1",
     "roboflow>=1.2.11",
 ]
