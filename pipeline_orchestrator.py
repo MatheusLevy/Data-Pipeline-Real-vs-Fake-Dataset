@@ -1,9 +1,14 @@
+import os
+import logging
 import yaml
 from sources.base_handler import BaseHandler
 from sources.handler_factory import HandlerFactory
 import shutil
 import hashlib
 from pathlib import Path
+
+LOG_LEVEL = os.getenv("PIPELINE_LOG_LEVEL", "INFO").upper()
+logging.basicConfig(level=LOG_LEVEL, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
 
 class ImagePipelineOrchestrator:
     def __init__(self, config_path='configs/sources.yaml'):

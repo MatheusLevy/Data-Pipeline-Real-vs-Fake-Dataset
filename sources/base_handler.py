@@ -10,13 +10,16 @@ class BaseHandler(ABC):
         self.config = config
         self.logger = logging.getLogger(f"pipeline.{source_name}")
     
-    def filter(self, images: list[Path]) -> list[Path]:
-        """Apply Roboflow-specific filters"""
-        self.logger.info("Filtering Roboflow data")
+    def filter(self, images: list) -> list:
+        self.logger.info("Applying post-filters")
         pos_filters = self.config.get("pos-filters", [])
+        self.logger.debug(f"Post-filters configured: {pos_filters}")
         for filter_name in pos_filters:
-            filter: Filter = FilterFactory.get_filter(filter_name, self.logger)
+            filter: Filter = FilterFactory.get_filter(filter_name, self.config)
+            before = len(images) if images else 0
             images = filter.apply(images)
+            after = len(images) if images else 0
+            self.logger.info(f"Applied filter {filter_name}: {before} -> {after}")
         return images
     
     @abstractmethod
@@ -30,9 +33,12 @@ class BaseHandler(ABC):
         pass
 
     def run(self):
-        """Template method — standard flow"""
-        self.logger.info(f"Starting extraction for {self.source_name}")
+        self.logger.info(f"Starting datapipeline for {self.source_name}")
+        self.logger.debug("Downloading images...")
         images = self.download_images()
+        self.logger.info(f"Downloaded {len(images)} items" if images else "No images downloaded")
         images = self.filter(images)
+        self.logger.info("Saving metadata...")
         self.save_metadata(images)
+        self.logger.info("Pipeline finished")
         return images

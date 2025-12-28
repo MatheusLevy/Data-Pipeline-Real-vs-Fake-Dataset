@@ -34,3 +34,31 @@ sources:
     pre-filters: []
     pos-filters: 
       - extract
+  - name: Anime VS Cartoon VS Human
+    author: Hadie Pratama Tulili
+    type: Open Source Dataset
+    source: Kaggle
+    handler: kaggle
+    url: https://www.kaggle.com/datasets/hadiepratamatulili/anime-vs-cartoon-vs-human
+    license: Database Contents License (DbCL) v1.0
+    date: 2022
+    pre-filters: []
+    pos-filters: 
+      - extract
+      - exclude_subfolder
+    filters_params:
+      exclude_subfolder:
+        subfolders:
+          - anime
+  - name: animals Computer Vision Model
+    author: yuga
+    type: Open Source Dataset
+    source: Roboflow Universe
+    handler: roboflow
+    url: https://universe.roboflow.com/yuga-pwtql/animals-eujgm
+    license: CC BY 4.0
+    date: oct 2022
+    version: 1
+    model: YOLOv12
+    pre-filters: []
+    pos-filters: []
