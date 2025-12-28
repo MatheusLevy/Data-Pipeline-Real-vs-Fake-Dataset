@@ -1,0 +1,6 @@
+/temp
+/images
+/.venv
+*.env
+__pycache__/
+*.pyc

@@ -1,0 +1,11 @@
+[project]
+name = "data-pipeline-real-vs-fake-dataset"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "dvc[s3]>=3.65.0",
+    "python-dotenv>=1.2.1",
+    "roboflow>=1.2.11",
+]

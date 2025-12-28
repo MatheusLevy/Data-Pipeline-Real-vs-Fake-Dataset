@@ -1,0 +1,23 @@
+sources:
+  - name: Cartoon Character Detection and Predicting the Movement Computer Vision Model
+    author: Ishanka Madhuranga
+    type: Open Source Dataset
+    source: Roboflow Universe
+    handler: roboflow
+    url: https://universe.roboflow.com/ishanka-madhuranga-r4sqh/cartoon-character-detection-and-predicting-the-movement
+    license: CC BY 4.0
+    date: August 2023
+    version: 1
+    model: YOLOv12
+    filters: []
+  - name: Game or cartoon person Computer Vision Model
+    author: newobjectyolomodel
+    type: Open Source Dataset
+    source: Roboflow Universe
+    handler: roboflow
+    url: https://universe.roboflow.com/newobjectyolomodel/game-or-cartoon-person
+    license: CC BY 4.0
+    date: July 2024
+    version: 2
+    model: YOLOv12
+    filters: []
