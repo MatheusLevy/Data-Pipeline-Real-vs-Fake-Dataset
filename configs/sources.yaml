@@ -62,3 +62,15 @@ sources:
     model: YOLOv12
     pre-filters: []
     pos-filters: []
+  - name: Animals Computer Vision Model
+    author: CDH
+    type: Open Source Dataset
+    source: Roboflow Universe
+    handler: roboflow
+    url: https://universe.roboflow.com/cdh-irvnk/animals-hy5lk
+    license: CC BY 4.0
+    data: apr 2025
+    version: 3
+    model: YOLOv12
+    pre-filters: []
+    pos-filters: []

@@ -15,7 +15,7 @@ class ImagePipelineOrchestrator:
         with open(config_path, 'r') as f:
             self.config = yaml.safe_load(f)
     
-    def run_pipeline(self, sources=None):
+    def run_pipeline(self):
         """Run the pipeline for the specified sources"""
         sources: list[dict] = self.config.get('sources', [])
         for source_cfg in sources:
