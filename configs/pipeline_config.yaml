@@ -9,8 +9,14 @@ sources:
     date: August 2023
     version: 1
     model: YOLOv12
-    pre-filters: []
-    pos-filters: []
+    filters:
+      - exclude_low_quality
+    filters_params:
+      exclude_low_quality:
+        min_height: 256
+        min_width: 256
+        min_contrast: 30
+        min_laplacian_sharpness: 50
   - name: Game or cartoon person Computer Vision Model
     author: newobjectyolomodel
     type: Open Source Dataset
@@ -21,8 +27,14 @@ sources:
     date: July 2024
     version: 2
     model: YOLOv12
-    pre-filters: []
-    pos-filters: []
+    filters:
+      - exclude_low_quality
+    filters_params:
+      exclude_low_quality:
+        min_height: 256
+        min_width: 256
+        min_contrast: 30
+        min_laplacian_sharpness: 50
   - name: cartoon
     author: skbadhsm
     type: Open Source Dataset
@@ -30,10 +42,16 @@ sources:
     handler: kaggle
     url: https://www.kaggle.com/datasets/skbadhsm/cartoon
     license: Database Contents License (DbCL) v1.0
-    date: 2019
-    pre-filters: []
-    pos-filters: 
+    date: "2019"
+    filters:
       - extract
+      - exclude_low_quality
+    filters_params:
+      exclude_low_quality:
+        min_height: 256
+        min_width: 256
+        min_contrast: 30
+        min_laplacian_sharpness: 50
   - name: Anime VS Cartoon VS Human
     author: Hadie Pratama Tulili
     type: Open Source Dataset
@@ -41,15 +59,20 @@ sources:
     handler: kaggle
     url: https://www.kaggle.com/datasets/hadiepratamatulili/anime-vs-cartoon-vs-human
     license: Database Contents License (DbCL) v1.0
-    date: 2022
-    pre-filters: []
-    pos-filters: 
+    date: "2022"
+    filters:
       - extract
       - exclude_subfolder
+      - exclude_low_quality
     filters_params:
       exclude_subfolder:
         subfolders:
           - anime
+      exclude_low_quality:
+        min_height: 256
+        min_width: 256
+        min_contrast: 30
+        min_laplacian_sharpness: 50
   - name: animals Computer Vision Model
     author: yuga
     type: Open Source Dataset
@@ -60,8 +83,14 @@ sources:
     date: oct 2022
     version: 1
     model: YOLOv12
-    pre-filters: []
-    pos-filters: []
+    filters:
+      - exclude_low_quality
+    filters_params:
+      exclude_low_quality:
+        min_height: 256
+        min_width: 256
+        min_contrast: 30
+        min_laplacian_sharpness: 50
   - name: Animals Computer Vision Model
     author: CDH
     type: Open Source Dataset
@@ -69,8 +98,14 @@ sources:
     handler: roboflow
     url: https://universe.roboflow.com/cdh-irvnk/animals-hy5lk
     license: CC BY 4.0
-    data: apr 2025
+    date: apr 2025
     version: 3
     model: YOLOv12
-    pre-filters: []
-    pos-filters: []
+    filters:
+      - exclude_low_quality
+    filters_params:
+      exclude_low_quality:
+        min_height: 256
+        min_width: 256
+        min_contrast: 30
+        min_laplacian_sharpness: 50

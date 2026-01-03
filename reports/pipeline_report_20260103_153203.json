@@ -1,0 +1,125 @@
+{
+  "run_id": "20260103_153203",
+  "total_sources": 6,
+  "total_images_processed": 10461,
+  "total_duration_seconds": 345.19537399999996,
+  "sources": [
+    {
+      "source_id": "cartoon_character_detection_and_predicting_the_movement_computer_vision_model",
+      "source_name": "roboflow",
+      "start_time": "2026-01-03 15:32:03.636834",
+      "end_time": "2026-01-03 15:32:35.692917",
+      "images_downloaded": 3039,
+      "images_after_filters": 2899,
+      "images_to_silver": 2899,
+      "filters_applied": {
+        "exclude_low_quality": {
+          "before": 3039,
+          "after": 2899,
+          "removed": 140
+        }
+      },
+      "errors": []
+    },
+    {
+      "source_id": "game_or_cartoon_person_computer_vision_model",
+      "source_name": "roboflow",
+      "start_time": "2026-01-03 15:32:35.693363",
+      "end_time": "2026-01-03 15:32:42.438579",
+      "images_downloaded": 113,
+      "images_after_filters": 94,
+      "images_to_silver": 94,
+      "filters_applied": {
+        "exclude_low_quality": {
+          "before": 113,
+          "after": 94,
+          "removed": 19
+        }
+      },
+      "errors": []
+    },
+    {
+      "source_id": "cartoon",
+      "source_name": "kaggle",
+      "start_time": "2026-01-03 15:32:42.439955",
+      "end_time": "2026-01-03 15:33:21.057199",
+      "images_downloaded": 1,
+      "images_after_filters": 2087,
+      "images_to_silver": 2087,
+      "filters_applied": {
+        "extract": {
+          "before": 1,
+          "after": 2466,
+          "removed": -2465
+        },
+        "exclude_low_quality": {
+          "before": 2466,
+          "after": 2087,
+          "removed": 379
+        }
+      },
+      "errors": []
+    },
+    {
+      "source_id": "anime_vs_cartoon_vs_human",
+      "source_name": "kaggle",
+      "start_time": "2026-01-03 15:33:21.057334",
+      "end_time": "2026-01-03 15:37:37.474491",
+      "images_downloaded": 1,
+      "images_after_filters": 2765,
+      "images_to_silver": 2765,
+      "filters_applied": {
+        "extract": {
+          "before": 1,
+          "after": 8917,
+          "removed": -8916
+        },
+        "exclude_subfolder": {
+          "before": 8917,
+          "after": 5913,
+          "removed": 3004
+        },
+        "exclude_low_quality": {
+          "before": 5913,
+          "after": 2765,
+          "removed": 3148
+        }
+      },
+      "errors": []
+    },
+    {
+      "source_id": "animals_computer_vision_model",
+      "source_name": "roboflow",
+      "start_time": "2026-01-03 15:37:37.474622",
+      "end_time": "2026-01-03 15:37:45.627683",
+      "images_downloaded": 1379,
+      "images_after_filters": 1308,
+      "images_to_silver": 1308,
+      "filters_applied": {
+        "exclude_low_quality": {
+          "before": 1379,
+          "after": 1308,
+          "removed": 71
+        }
+      },
+      "errors": []
+    },
+    {
+      "source_id": "animals_computer_vision_model",
+      "source_name": "roboflow",
+      "start_time": "2026-01-03 15:37:45.628065",
+      "end_time": "2026-01-03 15:37:48.834678",
+      "images_downloaded": 1379,
+      "images_after_filters": 1308,
+      "images_to_silver": 1308,
+      "filters_applied": {
+        "exclude_low_quality": {
+          "before": 1379,
+          "after": 1308,
+          "removed": 71
+        }
+      },
+      "errors": []
+    }
+  ]
+}

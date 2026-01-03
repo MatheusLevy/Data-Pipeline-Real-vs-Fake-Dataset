@@ -1,6 +1,10 @@
 /temp
 /images
+/metadata
 /.venv
 *.env
 __pycache__/
 *.pyc
+/bronze
+/silver
+/.checkpoints

@@ -1,11 +1,11 @@
 from pathlib import Path
 from filters.filter_base import Filter
+from models.config import Source
 
 class ExcludeSubFolder(Filter):
-    def __init__(self, config: dict) -> None:
+    def __init__(self, config: Source) -> None:
         super().__init__(config)
-        self.subfolders_name = config.get('filters_params', {}).get('exclude_subfolder', {}).get('subfolders', [])
-        print("ExcludeSubFolder subfolders_name:", self.subfolders_name)
+        self.subfolders_name = config.filters_params["exclude_subfolder"]["subfolders"]
         if not self.subfolders_name:
             self.logger.warning('ExcludeSubFolder initialized without a subfolders name; it will no-op')
         else:
