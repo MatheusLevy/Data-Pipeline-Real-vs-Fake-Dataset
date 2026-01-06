@@ -13,6 +13,8 @@ from models.report import SourceMetrics
 from utils.checkpoint import CheckpointManager
 from utils.hash import sha256_of_file
 from utils.image import image_info
+import pandas as pd
+from fastparquet import write
 
 class BaseHandler(ABC):
     def __init__(self, source_name: str, config: Source):
@@ -69,20 +71,30 @@ class BaseHandler(ABC):
         else:
             return os.getenv("SILVER_DIR", "./silver")
 
+    
     def save_metadata_bronze(self, metadata: BronzeMetadata) -> None:
         metadata_dir: str = self.get_metadata_dir(metadata)
         metadata_subfolder: str = os.getenv("METADATA_SUBFOLDER", "metadata")
         os.makedirs(f"{metadata_dir}/{metadata_subfolder}", exist_ok=True)
-        with open(f"{metadata_dir}/{metadata_subfolder}/{metadata.id}.json", 'w') as f:
-            json.dump(metadata.model_dump(), f, indent=4)
+        parquet_path: str = f"{metadata_dir}/{metadata_subfolder}/bronze_metadata.parquet"
+        df_metadata: pd.DataFrame = pd.DataFrame([metadata.model_dump()])
 
+        if os.path.exists(parquet_path):
+            write(parquet_path, df_metadata, append=True, compression='snappy')
+        else:
+            write(parquet_path, df_metadata, compression='snappy')
+   
     def save_metadata_silver(self, metadata: List[SilverMetadata]) -> None:
         metadata_dir: str = self.get_metadata_dir(metadata)
         metadata_subfolder: str = os.getenv("METADATA_SUBFOLDER", "metadata")
         os.makedirs(f"{metadata_dir}/{metadata_subfolder}", exist_ok=True)
-        for meta in metadata:
-            with open(f"{metadata_dir}/{metadata_subfolder}/{meta.id}.json", 'w') as f:
-                json.dump(meta.model_dump(), f, indent=4)
+        parquet_path: str = f"{metadata_dir}/{metadata_subfolder}/silver_metadata.parquet"
+        df_metadata: pd.DataFrame = pd.DataFrame([meta.model_dump() for meta in metadata])
+
+        if os.path.exists(parquet_path):
+            write(parquet_path, df_metadata, append=True, compression='snappy')
+        else:
+            write(parquet_path, df_metadata, compression='snappy')
     
     def bronze(self) -> Tuple[list[Path], Metadata]:
         """Download images and save bronze metadata"""

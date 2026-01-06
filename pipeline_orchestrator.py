@@ -34,12 +34,11 @@ def process_all_sources(sources: list[dict]) -> PipelineReport:
     
     for source_dict in sources:
         source_name: str = source_dict.get('name', 'unknown')
-        try:
-            metrics: SourceMetrics = process_source(source_dict)
-            report.add_source_metrics(metrics)
-            logger.info(f"✓ {source_name}: {metrics.images_to_silver} images processed")
-        except Exception as e:
-            logger.error(f"✗ {source_name}: {e}")
+
+        metrics: SourceMetrics = process_source(source_dict)
+        report.add_source_metrics(metrics)
+        logger.info(f"✓ {source_name}: {metrics.images_to_silver} images processed")
+
     
     return report
 
