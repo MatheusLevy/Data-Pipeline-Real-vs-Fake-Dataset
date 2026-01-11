@@ -43,7 +43,7 @@ class PipelineReport:
     
     def save(self, output_dir: str = "./reports"):
         os.makedirs(output_dir, exist_ok=True)
-        report_path = Path(output_dir) / f"pipeline_report_{self.run_id}.json"
+        report_path = Path(output_dir) / f"pipeline_report.json"
         
         report_data = {
             "run_id": self.run_id,

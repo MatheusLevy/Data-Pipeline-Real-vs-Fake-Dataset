@@ -6,6 +6,7 @@ from models.config import Source
 from models.report import PipelineReport, SourceMetrics
 from sources.base_handler import BaseHandler
 from sources.handler_factory import HandlerFactory
+from utils.s3 import upload_to_silver_s3
 
 LOG_LEVEL = os.getenv("PIPELINE_LOG_LEVEL", "INFO").upper()
 logging.basicConfig(level=LOG_LEVEL, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
@@ -54,6 +55,7 @@ def main():
     sources: list[dict] = config.get('sources', [])
     report: PipelineReport = process_all_sources(sources)
     save_report(report)
+    upload_to_silver_s3()
 
 if __name__ == "__main__":
     main()
