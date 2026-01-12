@@ -21,7 +21,7 @@ def _get_s3_client() -> boto3.client:
         aws_access_key_id=os.getenv("MINIO_ACCESS_KEY"),
         aws_secret_access_key=os.getenv("MINIO_SECRET_KEY"),
         config=Config(signature_version='s3v4'),
-        region_name='us-east-1'
+        region_name=os.getenv("REGION_NAME", "us-east-1")
     )
 
 def upload_file_to_s3(file_path: Path, bucket_name: str, bucket_path: Path) -> None:
@@ -50,7 +50,7 @@ def upload_folder_to_s3(folder_path: Path, bucket_name: str, bucket_path: Path) 
                 progress_bar.set_postfix_str(str(relative_path))
 
 def upload_to_silver_s3() -> None:
-    silver_dir = Path(os.getenv("SILVER_DIR"))
-    bucket_name = "classification-real-vs-fake"
-    bucket_path = Path("silver")
+    silver_dir = Path(os.getenv("SILVER_DIR", "./silver"))
+    bucket_name = os.getenv("SILVER_BUCKET_NAME", "classification-real-vs-fake")
+    bucket_path = Path(os.getenv("BUCKET_PATH", "silver"))
     upload_folder_to_s3(silver_dir, bucket_name, bucket_path)
