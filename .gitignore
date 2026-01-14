@@ -12,3 +12,4 @@ docker-compose.yaml
 /minio-data
 /wandb
 /reports
+Dockerfile

@@ -17,8 +17,8 @@ def _get_s3_client() -> boto3.client:
     return boto3.client(
         service_name='s3',
         endpoint_url=os.getenv("AWS_ENDPOINT_URL"),
-        aws_access_key_id=os.getenv("MINIO_ACCESS_KEY"),
-        aws_secret_access_key=os.getenv("MINIO_SECRET_KEY"),
+        aws_access_key_id=os.getenv("AWS_ACCESS_KEY_ID"),
+        aws_secret_access_key=os.getenv("AWS_SECRET_ACCESS_KEY"),
         region_name=os.getenv("AWS_DEFAULT_REGION", "us-east-1"),
         config=Config(signature_version='s3v4'),
     )
