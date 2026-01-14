@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  minio:
+    image: minio/minio
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      MINIO_ROOT_USER: <admin-user>
+      MINIO_ROOT_PASSWORD: <admin-pass>
+    volumes:
+      - ./minio-data:/data
+    command: server --console-address ":9001" /data
+    restart: unless-stopped

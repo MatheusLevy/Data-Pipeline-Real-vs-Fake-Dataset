@@ -8,3 +8,7 @@ __pycache__/
 /bronze
 /silver
 /.checkpoints
+docker-compose.yaml
+/minio-data
+/wandb
+/reports
