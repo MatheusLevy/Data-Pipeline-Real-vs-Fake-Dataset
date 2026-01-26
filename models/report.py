@@ -41,7 +41,10 @@ class PipelineReport:
     def add_source_metrics(self, metrics: SourceMetrics):
         self.sources_metrics.append(metrics)
     
-    def save(self, output_dir: str = "./reports"):
+    def add_wandb_run_name(self, run_name: str):
+        self.run_id = run_name
+    
+    def save(self, output_dir: str = "silver/metadata/"):
         os.makedirs(output_dir, exist_ok=True)
         report_path = Path(output_dir) / f"pipeline_report.json"
         

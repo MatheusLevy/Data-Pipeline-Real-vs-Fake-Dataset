@@ -46,20 +46,13 @@ def process_all_sources(sources: list[dict]) -> PipelineReport:
     
     return report
 
-def save_report(report: PipelineReport) -> Path:
-    """Save pipeline report to disk"""
-    report_path: Path = report.save()
-    logger.info(f"Pipeline report saved to: {report_path}")
-    return report_path
-
 def main():
     """Main pipeline orchestrator"""
     config: dict = load_config()
     sources: list[dict] = config.get('sources', [])
     report: PipelineReport = process_all_sources(sources)
-    save_report(report)
+    save_dataset_version(project_name=os.getenv("PROJECT_NAME"), dataset_name=os.getenv("DATASET_NAME"), report=report)
     upload_to_label_studio_ingestion_silver_S3()
-    save_dataset_version(project_name=os.getenv("PROJECT_NAME"), dataset_name=os.getenv("DATASET_NAME"))
-
+    
 if __name__ == "__main__":
     main()

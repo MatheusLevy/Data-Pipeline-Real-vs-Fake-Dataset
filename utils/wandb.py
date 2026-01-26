@@ -1,3 +1,6 @@
+import logging
+from pathlib import Path
+from models.report import PipelineReport
 from utils.git import get_current_commit_hash
 import wandb
 import os
@@ -6,13 +9,25 @@ import dotenv
 dotenv.load_dotenv()
 import json
 
+LOG_LEVEL = os.getenv("PIPELINE_LOG_LEVEL", "INFO").upper()
+logging.basicConfig(level=LOG_LEVEL, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
+logger = logging.getLogger("pipeline.orchestrator")
+
 def read_pipeline_report(report_path: str) -> dict:
     with open(report_path, 'r') as file:
         report = json.load(file)
     return report
 
-def save_dataset_version(project_name: str, dataset_name: str):
+def save_report(report: PipelineReport) -> Path:
+    """Save pipeline report to disk"""
+    report_path: Path = report.save()
+    logger.info(f"Pipeline report saved to: {report_path}")
+    return report_path
+
+def save_dataset_version(project_name: str, dataset_name: str, report: PipelineReport):
     with wandb.init(project=project_name) as run:
+        report.add_wandb_run_name(run.name)
+        save_report(report)
         artifact = wandb.Artifact(
             name=dataset_name, 
             type="dataset",
@@ -25,10 +40,6 @@ def save_dataset_version(project_name: str, dataset_name: str):
         artifact.add_dir(
             local_path=os.getenv("SILVER_DIR"),
             name="silver"
-        )
-        artifact.add_file(
-            local_path="reports/pipeline_report.json",
-            name="pipeline_report.json"
         )
         artifact.metadata = {
             "bronze_bucket": os.getenv("BRONZE_BUCKET_NAME"),
@@ -43,7 +54,7 @@ def save_dataset_version(project_name: str, dataset_name: str):
             "pipeline_version": get_current_commit_hash(),
             "created_by": "Data Pipeline for Natural vs Unnatural Images Classification",
             "creation_date": datetime.now().isoformat(),
-            "report": read_pipeline_report("reports/pipeline_report.json")
+            "report": read_pipeline_report("silver/metadata/pipeline_report.json")
         }
 
         run.log_artifact(artifact)
